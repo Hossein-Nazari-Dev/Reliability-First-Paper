@@ -1,6 +1,6 @@
 # Dataset dictionary
 
-The radiation directory contains **19,780 completed observations** in 58 CSVs, including the two Tehran comparisons without continuity-point preservation used in the paper. The validation directory contains **1,524 completed cases** in four CSVs. The baseline workbook contains **60** reference results. Successful observations retain their recorded values and row order, including repeated numerical outputs. Failed observations and run-management fields are excluded from these review exports. In the original runs used here, the excluded failures occurred before the successful refinement sequence.
+The radiation directory contains **20,176 completed observations** in 60 CSVs. Continuity-point comparisons cover uniform parameter segmentation of the filleted cross and complex composite profile in Tehran, and uniform arc-length segmentation of the complex composite profile in both Tehran and Glasgow. The validation directory contains **1,524 completed cases** in four CSVs. The baseline workbook contains **60** reference results. Successful observations retain their recorded values and row order, including repeated numerical outputs. Failed observations and run-management fields are excluded from these review exports. In the original runs used here, the excluded failures occurred before the successful refinement sequence.
 
 ## Directory keys
 

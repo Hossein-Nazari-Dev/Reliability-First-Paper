@@ -15,6 +15,14 @@ Data and Python code accompanying *Reliability First: Assessing Geometric Approx
 
 The datasets are available for independent evaluation and additional analyses. See the [data dictionary](data/README.md) for units, file coverage and data conventions.
 
+## Simulation tools and documentation
+
+- [CurvAdapt](https://nexonest.com/projects-pages/curvAdapt.html) generated the segmented profiles and evaluated geometric deviation.
+- [NexoSolve](https://nexonest.com/projects-pages/nexoSolve.html) managed the parametric simulation runs and recorded their outputs.
+- [CurvAdapt Wiki](https://nexonest.com/curvadapt-wiki.html) documents the corresponding Grasshopper components, inputs, outputs and algorithm logic.
+
+These tools were used to generate the recorded simulation datasets. Reproducing the numerical analyses below requires Python and the supplied data, without rerunning the simulation software.
+
 ## Run the analysis
 
 Use Python 3.12 or later. From the repository root, run:
@@ -33,7 +41,7 @@ The command reads the supplied inputs and writes CSVs to `outputs/`. Use `--outp
 | `supplementary_s1_summary.csv` | S1 counts by climate and target |
 | `supplementary_s2_selections.csv` | S2 segment counts by profile, climate, algorithm and radiation target |
 | `algorithm_ranks.csv` | Mean selected segment counts and ranks for all five tested screening tolerances |
-| `continuity_point_comparison.csv` | Reliable-region entry for the with- and without-preservation comparisons |
+| `continuity_point_comparison.csv` | Reliable-region entry, observation counts and distinct-output counts for all paired comparisons in Table 4 |
 | `geometric_associations.csv` | Pearson coefficients for the two Tehran examples in Figure 9 |
 | `validation_correlations.csv` | Descriptive Pearson and Spearman coefficients by output, climate, profile, WWR and refinement scope |
 | `validation_selections.csv` | Selected-model and subsequent refinement differences relative to the final validation model |
@@ -44,3 +52,7 @@ The primary screening tolerance is 0.2 percentage points. The radiation targets 
 
 The Python implementations can also be run individually for small examples. Their curve-evaluation callbacks can be supplied by a geometry library. See [CurvAdapt Wiki](https://nexonest.com/curvadapt-wiki.html) for the corresponding Grasshopper components and their controls.
 
+
+## Continuity-point comparisons
+
+At τ = 0.2 percentage points, preservation changes reliable-region entry from 97 to 24 actual segments for the Tehran filleted cross under uniform parameter segmentation. For the complex composite profile under uniform arc-length segmentation, entry changes from 196 to 127 in Tehran and from 154 to 127 in Glasgow; remaining distinct outputs change from 5 to 81 and from 47 to 81, respectively. Both arc-length comparisons use the same requested controls, 3 through 200. The Tehran composite under uniform parameter segmentation has singleton regions in both states and does not establish persistence. These comparisons support the tested combinations rather than a universal effect.

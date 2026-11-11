@@ -55,10 +55,14 @@ def analyze_radiation(root, references):
         profile = profile_id(case)
         rows = read_sequences(path, method)[None]
         errors = radiation_errors(rows, references[climate, profile, 4000][0])
-        if climate == "Tehran" and method == "uniform_by_parameter" and profile in ("cross", "polycurve"):
+        paired_parameter = climate == "Tehran" and method == "uniform_by_parameter" and profile in ("cross", "polycurve")
+        paired_arc_length = method == "uniform_by_length" and profile == "polycurve"
+        if paired_parameter or paired_arc_length:
             i = reliable_start(errors, PRIMARY_TOLERANCE)
-            continuity.append(dict(climate=climate, profile=profile, preservation=case.endswith("_with_kinks"),
-                                   entry_segments=rows[i]["segments"], region_rows=len(rows) - i))
+            continuity.append(dict(climate=climate, profile=profile, algorithm=method,
+                                   preservation=case.endswith("_with_kinks"),
+                                   entry_segments=rows[i]["segments"], region_rows=len(rows) - i,
+                                   region_distinct=distinct_outputs(rows[i:])))
         if case.endswith("_without_kinks"):
             continue
         if climate == "Tehran" and (profile, method) in (
